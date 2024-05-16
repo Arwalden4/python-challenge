@@ -3,6 +3,7 @@ import csv
 #establishing path to resources folder and csv data file 
 
 election_csv = os.path.join("Resources","election_data.csv")
+analysis_txt = os.path.join("analysis","PyPoll_results.txt")
 #variable for total number of votes
 total_votes = 0
 #list of candidates who received votes
@@ -33,7 +34,7 @@ with open(election_csv, encoding='utf-8-sig') as csv_file:
 
     print(f"Total Votes: {total_votes}") 
     print("-------------------------")
-    #looping through each item in candidates list 
+    #looping through each item in candidates list, calculating and printing percentage and vote count
     for candidate, vote_count in candidates.items():
         percent = (vote_count / total_votes) * 100
         print(f'{candidate}: {percent:.3f}% ({vote_count})')
@@ -44,3 +45,14 @@ print(f'Winner: {winning_cand}')
 
 print("-------------------------")
 
+with open(analysis_txt, 'a') as f:
+    f.write("Election Results\n")
+    f.write("-------------------------\n")
+    f.write(f"Total Votes: {total_votes}\n")
+    f.write("-------------------------\n")
+    for candidate, vote_count in candidates.items():
+        percent = (vote_count / total_votes) * 100
+        f.write(f'{candidate}: {percent:.3f}% ({vote_count})\n')
+    f.write("-------------------------\n")
+    f.write(f'Winner: {winning_cand}\n')
+    f.write("-------------------------\n")

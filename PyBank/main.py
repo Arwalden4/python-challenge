@@ -2,18 +2,19 @@ import os
 import csv
 #establishing path to resources folder and csv data file 
 
-budget_csv = os.path.join("Resources","budget_data.csv")
+budget_csv = os.path.join('Resources','budget_data.csv')
+results_txt = os.path.join('analysis', 'PyBank_results.txt')
 #declaring variables
 total_months = 0
 total_profit = 0 #sum of monthly profits
 
-monthly_difference = 0
-total_differences = 0 #sum of differences
+monthly_difference = 0 
+total_differences = 0 #sum of between month differences
 
 profit_diff_max = 0 #min and max for monthly profit differences 
 profit_diff_min = 0
 
-last_profit = 0
+last_profit = 0 #placeholder used to help update monthly profit by row
 
 date_max = ""
 date_min = ""
@@ -47,10 +48,19 @@ with open(budget_csv, encoding='utf-8-sig') as csv_file:
 #total average of profit and average of differences in monthly profit
 average_differences = total_differences / (total_months - 1)
 
-print(f"Financial Analysis")
-print(f"----------------------------")
+print("Financial Analysis")
+print("----------------------------")
 print(f"Total Months: {total_months}") 
 print(f"Total: ${total_profit}") 
 print(f"Average Change: ${average_differences:.2f}") 
 print(f"Greatest Increase In Profits: {date_max} (${profit_diff_max})") 
 print(f"Greatest Decrease in Profits: {date_min} (${profit_diff_min})") 
+
+with open(results_txt, 'a') as f:
+    f.write("Financial Analysis\n")
+    f.write("----------------------------\n")
+    f.write(f"Total Months: {total_months}\n") 
+    f.write(f"Total: ${total_profit}\n") 
+    f.write(f"Average Change: ${average_differences:.2f}\n") 
+    f.write(f"Greatest Increase In Profits: {date_max} (${profit_diff_max})\n") 
+    f.write(f"Greatest Decrease in Profits: {date_min} (${profit_diff_min})\n") 
