@@ -20,7 +20,7 @@ with open(election_csv, encoding='utf-8-sig') as csv_file:
     csv_header = next(csv_reader)
     #converting csv file into list for reading through
     votes_data = list(csv_reader)
-    #list of candidates who received votes
+    #dict of candidates who received votes
     candidates = {}
     #total = length of the entire file after skipped header
     total_votes = len(votes_data)
@@ -38,6 +38,7 @@ with open(election_csv, encoding='utf-8-sig') as csv_file:
         percent = (vote_count / total_votes) * 100
         print(f'{candidate}: {percent:.3f}% ({vote_count})')
 
+#finds winning candidate using max function on candidates dict
 winning_cand = max(candidates, key = candidates.get)
 print("-------------------------")
 print(f'Winner: {winning_cand}')
