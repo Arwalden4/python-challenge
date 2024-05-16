@@ -1,3 +1,3 @@
 # python-challenge
 Python challenge:
-Here will contain all files pertaining to the Module 3 challenge homework for class. It will have the code for both parts of the assignment, PyBank and PyPoll.
+Each folder for PyBank and PyPoll contains analysis, resources, and the main Python script. The analysis folder contains the text file to which the main script exported the results. Resources contains the csv file for each challenge. The main file contains the script itself following the instructions.
