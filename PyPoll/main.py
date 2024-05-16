@@ -4,11 +4,9 @@ import csv
 
 election_csv = os.path.join("Resources","election_data.csv")
 analysis_txt = os.path.join("analysis","PyPoll_results.txt")
-#variable for total number of votes
-total_votes = 0
-#list of candidates who received votes
 
-#percentage of votes each candidate won
+total_votes = 0
+
 #total number of votes each candidate won
 vote_count = 0
 #The winner of the election
@@ -22,9 +20,10 @@ with open(election_csv, encoding='utf-8-sig') as csv_file:
     csv_header = next(csv_reader)
     #converting csv file into list for reading through
     votes_data = list(csv_reader)
+    #list of candidates who received votes
     candidates = {}
+    #total = length of the entire file after skipped header
     total_votes = len(votes_data)
-    #total_votes += row[0]
     for row in votes_data:
         #storing unique candidate name as 1, whereas if already a key then increment
         if row[2] not in candidates:
@@ -45,6 +44,7 @@ print(f'Winner: {winning_cand}')
 
 print("-------------------------")
 
+#writing into text file results
 with open(analysis_txt, 'a') as f:
     f.write("Election Results\n")
     f.write("-------------------------\n")
